@@ -1,5 +1,5 @@
-<div class="" style="display: flex;text-align: center;align-items: center;justify-content: center;">
+<div class="" style="display: flex;text-align: center;align-items: center;justify-content: center;" (click)="changeUser()">
     <!-- <img [src]="'assets/users/' + selectUser.avatar" width="40px" hight="40px" style="border-radius: 100%;margin-right: 10px;"/> -->
-    <img [src]="userImg" width="40px" hight="40px" style="border-radius: 100%;margin-right: 10px;"/>
-    <span>{{selectUser.name}}</span>
+    <img [src]="userImg()" width="40px" hight="40px" style="border-radius: 100%;margin-right: 10px;"/>
+    <span>{{selectUser().name}}</span>
 </div>

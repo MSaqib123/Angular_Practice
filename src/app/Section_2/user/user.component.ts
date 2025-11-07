@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { DUMMY_USERS } from '../../dummy-users';
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
@@ -10,25 +10,48 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  // selectUser = DUMMY_USERS[0]
-  selectUser = DUMMY_USERS[randomIndex]
+  // // selectUser = DUMMY_USERS[0]
+  // selectUser = DUMMY_USERS[randomIndex]
 
-  //==== property getter =====
-  get userImg(){
-    return 'assets/users/'+this.selectUser.avatar
+  // //==== property getter =====
+  // get userImg(){
+  //   return 'assets/users/'+this.selectUser.avatar
+  // }
+
+  // changeUser(){
+  //   const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+  //   this.selectUser = DUMMY_USERS[randomIndex];
+  // }
+
+  
+
+
+
+  // selectUser = DUMMY_USERS[0]
+  selectUser =signal(DUMMY_USERS[randomIndex] )
+
+  //==== property getter =====\
+  userImg = computed(()=> 'assets/users/' + this.selectUser().avatar)
+  // get userImg(){
+  //   return 'assets/users/'+this.selectUser.avatar
+  // }
+
+  changeUser(){
+    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+    this.selectUser.set(DUMMY_USERS[randomIndex])
   }
 
+  
 
-  /// 1. What is zone.js?
-  // zone.js   is library that angular use to  track the changing in compananet
-  // setTimeout , promise, addEventListener, XHR / fetch calls
 
-  /*NOTE
-      1. Does zone.js Update the UI Itself? ❌
-          No!
-          zone.js never updates the UI directly.
-          Its only job is to notify Angular whenever an asynchronous task or event happens.
+  // Note  benifit of signla 
+  // signal jis component ya jis  jagaa   change ataa ha use ke update  angular ko data
+  // langke 
 
-          After that, Angular itself runs change detection and updates the UI.
-      */
+  // Zone.js  ya  1 jaga chage att tha to sb me changing ke update angular ko data thaha
+  // signals
+
+
+
+  
 }
