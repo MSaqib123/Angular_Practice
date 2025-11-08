@@ -1,5 +1,24 @@
+@if(isAddingTask)
+{
+    <app-new-task (hideTaskUI)="hideTaskUI()" (add)="completedTask($event)"/>
+}
 
-<p>{{username}}</p>
-<p>tasks works!</p>
+
+<section id="tasks">
+    <header>
+        <h2>{{username}}'s Tasks</h2>        
+        <menu>
+            <button (click)="showAddTask()">Add Task</button>
+        </menu>
+    </header>
+    <ul>
+        <li>
+            @for (item of selectedUserTasks; track $index) {
+                <app-task [task]="item" (selectedTask)="completedTask($event)"/>
+            }
+        </li>
+    </ul>
+</section>
+
 
 

@@ -10,7 +10,7 @@
 
     <!-- --------- Conditinal if ------------ -->
     @if(onSelectedUser){
-        <app-tasks [username]="onSelectedUser!.name"/>
+        <app-tasks [username]="onSelectedUser?.name" [id]="onSelectedUser?.id"/>
     }
     @else{
         <p id="fallback">Select a user to see their tasks!</p>
