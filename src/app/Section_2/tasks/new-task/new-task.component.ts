@@ -12,7 +12,7 @@ import { NewTask } from '../../User.model';
 export class NewTaskComponent {
   @Output() hideTaskUI = new EventEmitter<void>();
   @Output() add = new EventEmitter<NewTask>();
-
+  
   hidepopup(){
     this.hideTaskUI.emit();
   }
