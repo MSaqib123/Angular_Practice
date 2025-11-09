@@ -3,10 +3,3 @@ export interface User{
     name:string;
     avatar:string
 }
-
-export interface NewTask{
-    title:string;
-    summary:string;
-    date:string
-}
-
