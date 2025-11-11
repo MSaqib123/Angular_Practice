@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import { NewTask } from '../../User.model';
 
 @Component({
   selector: 'app-new-task',
@@ -10,7 +11,7 @@ import { NgClass } from '@angular/common';
 })
 export class NewTaskComponent {
   @Output() hideTaskUI = new EventEmitter<void>();
-  @Output() add = new EventEmitter<any>();
+  @Output() add = new EventEmitter<NewTask>();
 
   hidepopup(){
     this.hideTaskUI.emit();
@@ -26,6 +27,7 @@ export class NewTaskComponent {
       summary:this.summeryTxt,
       date:this.dateTxt
     })
+    this.hidepopup();
   }
 
 }
