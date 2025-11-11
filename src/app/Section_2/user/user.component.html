@@ -1,5 +1,17 @@
-<div class="" style="display: flex;text-align: center;align-items: center;justify-content: center;" (click)="changeUser()">
-    <!-- <img [src]="'assets/users/' + selectUser.avatar" width="40px" hight="40px" style="border-radius: 100%;margin-right: 10px;"/> -->
-    <img [src]="userImg()" width="40px" hight="40px" style="border-radius: 100%;margin-right: 10px;"/>
-    <span>{{selectUser().name}}</span>
+<div 
+    style="
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        margin-bottom:10px;cursor: pointer;" 
+        [class.active] = "selectedUser"
+        (click)="onSelectUser()"
+        >
+
+    <!-- Property Binding -->
+    <img [src]="userImg()" width="40px" hight="40px" style="border-radius: 100%;margin-right: 10px"/>
+    <span>{{user()!.name}}</span>
+
 </div>
+

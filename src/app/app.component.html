@@ -1,2 +1,18 @@
-<app-header></app-header>
-<app-user></app-user>
+<app-header/>
+<main>
+    <ul id="users">
+        @for (item of users; track $index) {
+            <li>
+                <app-user [selectedUser]="selectedUserId === item.id" [user]="item" (select)="onSelectUser($event)" ></app-user>
+            </li>
+        }
+    </ul>
+
+    
+</main>
+
+
+
+
+
+
