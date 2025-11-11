@@ -8,6 +8,13 @@
         }
     </ul>
 
+    <!-- --------- Conditinal if ------------ -->
+    @if(onSelectedUser){
+        <app-tasks [username]="onSelectedUser!.name"/>
+    }
+    @else{
+        <p id="fallback">Select a user to see their tasks!</p>
+    }
     
 </main>
 

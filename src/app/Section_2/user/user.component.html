@@ -1,17 +1,10 @@
-<div 
-    style="
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        margin-bottom:10px;cursor: pointer;" 
-        [class.active] = "selectedUser"
-        (click)="onSelectUser()"
-        >
+<div>
 
-    <!-- Property Binding -->
-    <img [src]="userImg()" width="40px" hight="40px" style="border-radius: 100%;margin-right: 10px"/>
-    <span>{{user()!.name}}</span>
+    <button (click)="onSelectUser()" [class.active]="selectedUser">
+        <!-- Property Binding -->
+        <img [src]="userImg()" width="40px" hight="40px" style="border-radius: 100%;margin-right: 10px"/>
+        <span>{{user()!.name}}</span>
+    </button>
 
 </div>
 
