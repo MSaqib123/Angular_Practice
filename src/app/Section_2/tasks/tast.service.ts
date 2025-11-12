@@ -10,11 +10,15 @@ import { NewTaskComponent } from "./new-task/new-task.component";
 )
 
 export class TasksService{
+    tasks = Tasks;
     constructor(){
         // get local store
+        const tasks = localStorage.getItem('tasks');
+        if(tasks){
+            this.tasks = JSON.parse(tasks);
+        }
     }
 
-    tasks = Tasks;
 
     // select
     getUserTask(userId:string){
@@ -30,12 +34,17 @@ export class TasksService{
             userId:userId,
             dueDate:task.date
         })
+        this.saveToLocalStorage()
     }
 
     // delete
-    deleteTaskForUser(taskId:string){
+    deleteCompleteTaskForUser(taskId:string){
         this.tasks = this.tasks.filter(t=>t.id !== taskId)
+        this.saveToLocalStorage()
     }
 
     // localstore
+    private saveToLocalStorage(){
+        localStorage.setItem("tasks",JSON.stringify(this.tasks))
+    }
 }

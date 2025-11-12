@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { Task } from './Task.model';
 import { DUMMY_USERS } from '../../dummy-users';
 import { Tasks } from '../../dummy-task';
 import { NewTaskComponent } from "./new-task/new-task.component";
 import { Title } from '@angular/platform-browser';
+import { TasksService } from './tast.service';
 @Component({
   selector: 'app-tasks',
   imports: [TaskComponent, NewTaskComponent],
@@ -12,6 +13,7 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
+  private taskService = inject(TasksService);
   @Input({required:true}) id?:string;
   @Input({required:true}) username?:string;
   tasks = Tasks;
@@ -26,12 +28,11 @@ export class TasksComponent {
   }
 
   get selectedUserTasks(){
-    return this.tasks.filter(x=>x.userId === this.id);
+    // return this.tasks.filter(x=>x.userId === this.id);
+    return this.taskService.getUserTask(this.id!)//this.tasks.filter(x=>x.userId === this.id);
   }
   
-  completedTask(selectedTask:string){
-    this.tasks = this.tasks.filter(x=>x.id !== selectedTask);
-  }
+  
 
   addTask(Task:any){
     const mapData = {
@@ -41,8 +42,10 @@ export class TasksComponent {
       summary :Task.summary,
       dueDate:Task.date
     }
-    console.log(mapData);
     this.tasks.unshift(mapData)
   }
 
+  // completedTask(selectedTask:string){
+  //   this.tasks = this.tasks.filter(x=>x.id !== selectedTask);
+  // }
 }

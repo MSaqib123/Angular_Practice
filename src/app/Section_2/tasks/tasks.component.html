@@ -1,6 +1,6 @@
 @if(isAddingTask)
 {
-    <app-new-task (hideTaskUI)="hideTaskUI()" (add)="addTask($event)"/>
+    <app-new-task [UserId]="id!"  (hideTaskUI)="hideTaskUI()"/>
 }
 <section id="tasks">
     <header>
@@ -12,7 +12,8 @@
     <ul>
         <li>
             @for (item of selectedUserTasks; track $index) {
-                <app-task [task]="item" (selectedTask)="completedTask($event)"/>
+                <!-- <app-task [task]="item" (selectedTask)="completedTask($event)"/> -->
+                <app-task [task]="item"/>
             }
         </li>
     </ul>
